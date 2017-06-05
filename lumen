@@ -1,0 +1,31 @@
+#!/bin/bash
+
+help(){
+	echo "Usage:"
+	printf "\t down\t\t: Stop Lumen app.\n"
+	printf "\t e, enter\t: Enter Lumen container.\n"
+	printf "\t h, help\t: Show this help.\n"
+	printf "\t up\t\t: Launch Lumen app.\n"
+	exit 0
+}
+
+if [[ -z $1 ]];then
+	help
+	exit 0
+fi
+
+case $1 in
+	up)
+		sudo docker-compose up -d lumen
+		;;
+	down)
+		sudo docker-compose down
+		;;
+	e | enter)
+		sudo docker-compose exec lumen /bin/bash -c "cd /var/www/src \
+			&& /bin/bash"
+		;;
+	* | h | help)
+		help
+		;;
+esac

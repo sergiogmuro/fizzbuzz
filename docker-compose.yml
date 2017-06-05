@@ -1,0 +1,9 @@
+lumen:
+  image: yamaszone/nginx-laravel-lumen:v0.1.0
+  ports:
+    - "8000:80"
+    - "9000:9000"
+  volumes:
+    - ./www:/var/www
+    - ./sites:/etc/nginx/conf.d
+    - ./logs:/var/log/supervisor
