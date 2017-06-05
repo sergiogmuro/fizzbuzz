@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use \Log;
 use Exception;
+use App\Helpers\FizzBuzzHelpers as Helpers;
 
 class FizzBuzzController extends Controller
 {
@@ -19,7 +20,7 @@ class FizzBuzzController extends Controller
         Log::info('[index] :: Start FizzBuzz');
         try {
             // Check if values are numeric
-            if ($this->validateIsNumericValue($min) && $this->validateIsNumericValue($max)) {
+            if (Helpers::validateIsNumericValue($min) && Helpers::validateIsNumericValue($max)) {
                 $this->startProcess($min, $max);
             } else {
                 // Send an exception
@@ -30,28 +31,6 @@ class FizzBuzzController extends Controller
             return $e;
         }
         Log::info('[index] :: End FizzBuzz');
-    }
-
-    /**
-     * validateIsNumericValue
-     *
-     * Validate if the value is a numeric value
-     *
-     * @param  $value
-     * @return false or true
-     */
-    private function validateIsNumericValue($value)
-    {
-        Log::info("[validateIsNumericValue] :: Check value '$value'");
-
-        if (is_numeric($value)) {
-            Log::info('[validateIsNumericValue] :: Value is numeric');
-            return true;
-        }
-
-        // return false with not is a number
-        Log::Error("[validateIsNumericValue] :: Value '$value' is not numeric");
-        return false;
     }
 
     /**
