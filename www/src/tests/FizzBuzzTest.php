@@ -40,10 +40,17 @@ class FizzBuzzTest extends TestCase
      */
     public function testIntegers($a, $b)
     {
-        print_r($a);
-        print_r($b);
         $value = $this->instance->index($a, $b);
         $this->assertEquals('', $value);
+    }
+
+    /**
+     * @dataProvider integersInverseProvider
+     * @expectedException \Exception
+     */
+    public function testIntegersInverse($a, $b)
+    {
+        $value = $this->instance->index($a, $b);
     }
 
     public function stringsProvider()
@@ -59,8 +66,16 @@ class FizzBuzzTest extends TestCase
     {
         return [
             [-50, 50],
-            [10, 1],
             [10, 20]
+        ];
+    }
+
+    public function integersInverseProvider()
+    {
+        return [
+            [10, 1],
+            [0, -5],
+            [10, -20]
         ];
     }
 }

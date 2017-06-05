@@ -16,18 +16,20 @@ class FizzBuzzController extends Controller
      */
     public function index($min, $max)
     {
+        Log::info('[index] :: Start FizzBuzz');
         try {
+            // Check if values are numeric
             if ($this->validateIsNumericValue($min) && $this->validateIsNumericValue($max)) {
-                Log::info('User failed to login.');
                 $this->startProcess($min, $max);
             } else {
                 // Send an exception
-                Log::error('Bad Request');
-                throw new Exception("Bad Request", 1);
+                Log::error('[index] :: Bad Request');
+                throw new Exception("Bad Request", 400);
             }
         } catch (ExceptionHandler $e) {
             return $e;
         }
+        Log::info('[index] :: End FizzBuzz');
     }
 
     /**
@@ -40,11 +42,15 @@ class FizzBuzzController extends Controller
      */
     private function validateIsNumericValue($value)
     {
+        Log::info("[validateIsNumericValue] :: Check value '$value'");
+
         if (is_numeric($value)) {
+            Log::info('[validateIsNumericValue] :: Value is numeric');
             return true;
         }
 
         // return false with not is a number
+        Log::Error("[validateIsNumericValue] :: Value '$value' is not numeric");
         return false;
     }
 
@@ -57,7 +63,14 @@ class FizzBuzzController extends Controller
      */
     private function startProcess($min, $max)
     {
-        for ($i = $min; $i <= $max; $i ++) {
+        Log::info('[startProcess] :: Start Process');
+
+        if ($min > $max) {
+            Log::Error('[startProcess] :: First value is highest to second value');
+            throw new Exception('First value is highest to second value', 400);
+        }
+
+        for ($i = $min; $i <= $max; ++$i) {
             $output = ($i % 3 == 0) ? 'Fizz' : '';
             $output .= ($i % 5 == 0) ? 'Buzz' : '';
 

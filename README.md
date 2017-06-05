@@ -30,6 +30,11 @@ Usage:
          up             : Launch Lumen app.
 ```
 
+# Run with web browser
+```
+$ http://localhost:8000/fizzbuzz/-50/50/
+```
+
 # Run with console
 ```
 $ ./lumen e
@@ -37,13 +42,9 @@ $ cd /var/www/src
 $ php artisan fizzbuzz:run -- -50 50
 ```
 
-# Run with web browser
-```
-$ http://localhost:8000/fizzbuzz/-50/50/
-```
-
 # Run tests in console
 ```
 $ ./lumen e
+$ cd /var/www/src
 $ vendor/bin/phpunit
 ```
