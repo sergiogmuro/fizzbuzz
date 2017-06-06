@@ -1,13 +1,15 @@
-# PHP Laravel Lumen Micro Framework
+# FizzBuzz PHP Ssr Test
 
+## Server
+### PHP Laravel Lumen Micro Framework
 Minimal Lumen with: Nginx 
 
-## Requirements
+### Requirements
 
 * [Docker Engine](https://docs.docker.com/installation/)
 * [Docker Compose](https://docs.docker.com/compose/)
 
-## Prerequisite: Install docker-compose on CoreOS
+### Prerequisite: Install docker-compose on CoreOS
 
 Use the following convenient script to do frequent operation around Lumen app.
 (check if it is not necessary)
@@ -18,7 +20,7 @@ $ curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compo
 $ chmod +x /opt/bin/docker-compose
 ```
 
-## Running Server
+### Running Server
 
 Use the following convenient script to do frequent operation around Lumen app.
 
@@ -30,20 +32,25 @@ Usage:
          up             : Launch Lumen app.
 ```
 
-# Run with web browser
-```
-$ http://localhost:8000/fizzbuzz/-50/50/
+# Running the code
+
+### First start the server..
+```sh
+$ ./lumen up
 ```
 
-# Run with console
-```
+### Run with web browser
+[http://localhost:8000/fizzbuzz/-50/50/](http://localhost:8000/fizzbuzz/-50/50/)
+
+### Run with console
+```sh
 $ ./lumen e
 $ cd /var/www/src
 $ php artisan fizzbuzz:run -- -50 50
 ```
 
-# Run tests in console
-```
+### Run tests in console
+```sh
 $ ./lumen e
 $ cd /var/www/src
 $ vendor/bin/phpunit
